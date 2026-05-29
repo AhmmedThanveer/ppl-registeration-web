@@ -10,19 +10,22 @@ const positions = [
       <svg viewBox="0 0 80 80" width="60" height="60">
         <defs>
           <radialGradient id="gkGrad" cx="40" cy="40" r="35">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#ffd43b" stopOpacity="0.16" />
           </radialGradient>
         </defs>
-        <circle cx="40" cy="40" r="34" fill="url(#gkGrad)" />
-        <circle cx="40" cy="30" r="12" fill="#fff" />
-        <path d="M26 32 C26 20, 54 20, 54 32 C54 44, 26 44, 26 32 Z" fill="currentColor" opacity="0.88" />
-        <circle cx="32" cy="29" r="2" fill="#111" />
-        <circle cx="48" cy="29" r="2" fill="#111" />
-        <path d="M32 36 Q40 42 48 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M24 42 Q40 24 56 42" stroke="#fff" strokeWidth="3" fill="none" opacity="0.85" />
-        <rect x="22" y="48" width="36" height="14" rx="7" fill="currentColor" opacity="0.18" />
-        <path d="M28 50 L36 46 L44 50 L52 46" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.8" />
+        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#gkGrad)" />
+        <path d="M18 25 C18 18, 40 14, 62 25 C60 34, 54 38, 40 38 C26 38, 20 34, 18 25 Z" fill="#fff" opacity="0.95" />
+        <path d="M20 25 Q26 18 32 24 Q40 16 48 24 Q54 18 60 25" stroke="#111" strokeWidth="2" fill="none" />
+        <circle cx="28" cy="30" r="3" fill="#111" />
+        <circle cx="52" cy="30" r="3" fill="#111" />
+        <path d="M30 37 Q40 44 50 37" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M18 34 C18 42, 26 52, 40 52 C54 52, 62 42, 62 34" fill="#ffde6e" opacity="0.98" />
+        <path d="M24 38 L56 38 L48 58 L32 58 Z" fill="#fff" opacity="0.6" />
+        <path d="M25 39 L35 25 L45 39" stroke="#111" strokeWidth="2" fill="none" opacity="0.7" />
+        <circle cx="20" cy="56" r="6" fill="#fff" opacity="0.9" />
+        <path d="M16 54 L24 58 M24 54 L16 58" stroke="#111" strokeWidth="1.4" />
+        <path d="M40 62 C45 58, 55 58, 60 62" stroke="#ffca2c" strokeWidth="3" fill="none" opacity="0.8" />
       </svg>
     ),
   },
@@ -34,22 +37,22 @@ const positions = [
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
         <defs>
-          <radialGradient id="forwardGrad" cx="40" cy="40" r="35">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="0.12" />
-          </radialGradient>
+          <linearGradient id="forwardCard" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#ef4444" stopOpacity="0.16" />
+          </linearGradient>
         </defs>
-        <circle cx="40" cy="40" r="34" fill="url(#forwardGrad)" />
-        <path d="M24 35 C24 20, 56 20, 56 35 C56 50, 24 50, 24 35 Z" fill="currentColor" opacity="0.9" />
-        <circle cx="40" cy="30" r="12" fill="#fff" />
-        <path d="M29 29 Q40 20 51 29" stroke="#111" strokeWidth="3" fill="none" />
-        <circle cx="34" cy="30" r="2" fill="#111" />
-        <circle cx="46" cy="30" r="2" fill="#111" />
-        <path d="M34 36 Q40 42 46 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M23 45 Q40 32 57 45" stroke="#fff" strokeWidth="3" fill="none" opacity="0.8" />
-        <circle cx="58" cy="52" r="10" fill="#fff" opacity="0.95" />
-        <path d="M55 50 L58 54 L62 49" stroke="currentColor" strokeWidth="2" fill="none" />
-        <circle cx="58" cy="52" r="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#forwardCard)" />
+        <path d="M22 28 C22 18, 58 18, 58 28 C58 38, 22 38, 22 28 Z" fill="#fff" />
+        <path d="M24 28 Q28 18 36 24 Q44 18 52 28" stroke="#111" strokeWidth="2" fill="none" />
+        <circle cx="30" cy="31" r="2.5" fill="#111" />
+        <circle cx="50" cy="31" r="2.5" fill="#111" />
+        <path d="M30 36 Q40 44 50 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M18 36 C18 46, 62 46, 62 36 C62 52, 18 52, 18 36 Z" fill="#f87171" />
+        <path d="M22 38 L58 38 L52 58 L28 58 Z" fill="#fff" opacity="0.78" />
+        <path d="M26 40 L38 30 L50 40" stroke="#111" strokeWidth="2" fill="none" opacity="0.8" />
+        <circle cx="60" cy="54" r="8" fill="#fff" />
+        <path d="M56 52 L61 57 M61 52 L56 57" stroke="#111" strokeWidth="1.4" />
       </svg>
     ),
   },
@@ -61,21 +64,22 @@ const positions = [
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
         <defs>
-          <radialGradient id="wingGrad" cx="40" cy="40" r="35">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="0.12" />
-          </radialGradient>
+          <linearGradient id="wingCard" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#34d399" stopOpacity="0.16" />
+          </linearGradient>
         </defs>
-        <circle cx="40" cy="40" r="34" fill="url(#wingGrad)" />
-        <path d="M25 35 C25 20, 55 20, 55 35 C55 50, 25 50, 25 35 Z" fill="currentColor" opacity="0.85" />
-        <circle cx="40" cy="30" r="12" fill="#fff" />
-        <path d="M28 30 Q40 18 52 30" stroke="#111" strokeWidth="3" fill="none" />
-        <circle cx="34" cy="30" r="2" fill="#111" />
-        <circle cx="46" cy="30" r="2" fill="#111" />
-        <path d="M34 36 Q40 42 46 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M20 52 Q40 35 60 52" stroke="#fff" strokeWidth="3" fill="none" opacity="0.8" />
-        <path d="M14 45 L24 40 L24 50 Z" fill="currentColor" opacity="0.9" />
-        <path d="M60 45 L70 40 L70 50 Z" fill="currentColor" opacity="0.9" />
+        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#wingCard)" />
+        <path d="M20 26 C20 18, 60 18, 60 26 C60 34, 20 34, 20 26 Z" fill="#fff" />
+        <path d="M22 26 Q28 18 36 24 Q44 18 52 26" stroke="#111" strokeWidth="2" fill="none" />
+        <circle cx="28" cy="30" r="2.5" fill="#111" />
+        <circle cx="52" cy="30" r="2.5" fill="#111" />
+        <path d="M28 36 Q40 44 52 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M18 40 C18 50, 62 50, 62 40 C62 54, 18 54, 18 40 Z" fill="#6ee7b7" opacity="0.95" />
+        <path d="M24 42 L56 42 L48 60 L32 60 Z" fill="#fff" opacity="0.7" />
+        <path d="M26 44 L36 34 L46 44" stroke="#111" strokeWidth="2" fill="none" opacity="0.8" />
+        <path d="M12 54 L22 48 L22 58 Z" fill="#34d399" opacity="0.85" />
+        <path d="M68 54 L58 48 L58 58 Z" fill="#34d399" opacity="0.85" />
       </svg>
     ),
   },
@@ -87,20 +91,22 @@ const positions = [
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
         <defs>
-          <radialGradient id="centerGrad" cx="40" cy="40" r="35">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="0.12" />
-          </radialGradient>
+          <linearGradient id="centerCard" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.16" />
+          </linearGradient>
         </defs>
-        <circle cx="40" cy="40" r="34" fill="url(#centerGrad)" />
-        <path d="M30 30 C28 25, 52 25, 50 30 C48 35, 32 35, 30 30 Z" fill="currentColor" opacity="0.9" />
-        <circle cx="40" cy="30" r="12" fill="#fff" />
-        <path d="M32 30 Q40 22 48 30" stroke="#111" strokeWidth="3" fill="none" />
-        <circle cx="34" cy="31" r="2" fill="#111" />
-        <circle cx="46" cy="31" r="2" fill="#111" />
-        <path d="M34 37 Q40 43 46 37" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M22 38 L30 28 L38 38 L46 28 L54 38" stroke="#fff" strokeWidth="3" fill="none" opacity="0.9" />
-        <path d="M15 48 Q40 15 65 48 Q40 60 15 48 Z" fill="currentColor" opacity="0.15" />
+        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#centerCard)" />
+        <path d="M22 28 C22 20, 58 20, 58 28 C58 36, 22 36, 22 28 Z" fill="#fff" />
+        <path d="M24 28 Q30 20 38 26 Q46 20 54 28" stroke="#111" strokeWidth="2" fill="none" />
+        <circle cx="30" cy="31" r="2.5" fill="#111" />
+        <circle cx="50" cy="31" r="2.5" fill="#111" />
+        <path d="M30 36 Q40 43 50 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M18 39 C18 46, 62 46, 62 39 C62 53, 18 53, 18 39 Z" fill="#93c5fd" opacity="0.95" />
+        <path d="M22 42 L58 42 L52 60 L28 60 Z" fill="#fff" opacity="0.76" />
+        <path d="M26 44 L38 34 L50 44" stroke="#111" strokeWidth="2" fill="none" opacity="0.8" />
+        <path d="M16 54 L24 48 L24 58 Z" fill="#60a5fa" opacity="0.85" />
+        <path d="M64 54 L56 48 L56 58 Z" fill="#60a5fa" opacity="0.85" />
       </svg>
     ),
   },

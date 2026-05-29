@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
+
+const logoSrc = `${process.env.PUBLIC_URL}/assets/ppl-logo.png`;
 
 const IntroScreen = ({ onComplete }) => {
   const [phase, setPhase] = useState('logo'); // logo -> text -> exit
@@ -41,7 +43,7 @@ const IntroScreen = ({ onComplete }) => {
         marginBottom: 32,
         filter: 'drop-shadow(0 0 40px rgba(245,166,35,0.5))',
       }}>
-        <PPLLogoSVG size={160} />
+        <PPLLogoSVG size={220} />
       </div>
 
       {/* Text */}
@@ -108,38 +110,25 @@ const IntroScreen = ({ onComplete }) => {
   );
 };
 
-// Inline SVG Logo (shield shape mimicking PPL logo colors)
+// Logo image loaded from public assets (PDF/png upload)
 const PPLLogoSVG = ({ size = 120 }) => (
-  <svg width={size} height={size} viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-    {/* Shield outer */}
-    <path d="M100 10 L185 45 L185 130 Q185 185 100 210 Q15 185 15 130 L15 45 Z"
-      fill="#111" stroke="#F5A623" strokeWidth="3"/>
-    {/* Shield left half gold */}
-    <clipPath id="leftHalf">
-      <rect x="15" y="10" width="85" height="200"/>
-    </clipPath>
-    <path d="M100 10 L185 45 L185 130 Q185 185 100 210 Q15 185 15 130 L15 45 Z"
-      fill="#F5A623" clipPath="url(#leftHalf)"/>
-    {/* Stars */}
-    <text x="100" y="30" textAnchor="middle" fontSize="14" fill="#111">★</text>
-    <text x="68" y="28" textAnchor="middle" fontSize="12" fill="#F5A623">★</text>
-    <text x="132" y="28" textAnchor="middle" fontSize="12" fill="#F5A623">★</text>
-    {/* PPL text */}
-    <rect x="55" y="42" width="90" height="52" fill="#F5A623" rx="4"/>
-    <text x="100" y="83" textAnchor="middle" fontSize="34" fontWeight="900"
-      fontFamily="Arial Black" fill="white">PPL</text>
-    {/* Banner */}
-    <rect x="35" y="100" width="130" height="46" fill="#111" rx="4" stroke="#F5A623" strokeWidth="1.5"/>
-    <text x="100" y="118" textAnchor="middle" fontSize="11" fontWeight="900"
-      fontFamily="Arial Black" fill="#F5A623">PUTHALIPPURAM</text>
-    <text x="100" y="135" textAnchor="middle" fontSize="11" fontWeight="900"
-      fontFamily="Arial Black" fill="#F5A623">PREMIER LEAGUE</text>
-    {/* Ball */}
-    <circle cx="100" cy="178" r="22" fill="#ddd" stroke="#aaa" strokeWidth="1"/>
-    <path d="M100 156 L108 170 L100 178 L92 170 Z" fill="#555"/>
-    <path d="M78 175 L92 170 L100 178 L90 188 Z" fill="#555"/>
-    <path d="M122 175 L108 170 L100 178 L110 188 Z" fill="#555"/>
-  </svg>
+  <img
+    src={logoSrc}
+    alt="PPL Logo"
+    width={size}
+    height="auto"
+    style={{
+      width: size,
+      height: 'auto',
+      display: 'block',
+      objectFit: 'contain',
+      maxWidth: '100%',
+    }}
+    onError={(event) => {
+      event.currentTarget.onerror = null;
+      event.currentTarget.style.display = 'none';
+    }}
+  />
 );
 
 export { PPLLogoSVG };

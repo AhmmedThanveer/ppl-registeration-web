@@ -8,20 +8,21 @@ const positions = [
     desc: 'The last line of defense',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        {/* Keeper gloves */}
-        <rect x="10" y="25" width="25" height="35" rx="8" fill="currentColor" opacity="0.9"/>
-        <rect x="45" y="25" width="25" height="35" rx="8" fill="currentColor" opacity="0.9"/>
-        <circle cx="40" cy="20" r="12" fill="currentColor" opacity="0.7"/>
-        {/* Goal net lines */}
-        <line x1="5" y1="5" x2="5" y2="60" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
-        <line x1="75" y1="5" x2="75" y2="60" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
-        <line x1="5" y1="5" x2="75" y2="5" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
-        {[15,25,35,45,55,65].map(x => (
-          <line key={x} x1={x} y1="5" x2={x} y2="60" stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
-        ))}
-        {[15,25,35,45,55].map(y => (
-          <line key={y} x1="5" y1={y} x2="75" y2={y} stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
-        ))}
+        <defs>
+          <radialGradient id="gkGrad" cx="40" cy="40" r="35">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.1" />
+          </radialGradient>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="url(#gkGrad)" />
+        <circle cx="40" cy="30" r="12" fill="#fff" />
+        <path d="M26 32 C26 20, 54 20, 54 32 C54 44, 26 44, 26 32 Z" fill="currentColor" opacity="0.88" />
+        <circle cx="32" cy="29" r="2" fill="#111" />
+        <circle cx="48" cy="29" r="2" fill="#111" />
+        <path d="M32 36 Q40 42 48 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M24 42 Q40 24 56 42" stroke="#fff" strokeWidth="3" fill="none" opacity="0.85" />
+        <rect x="22" y="48" width="36" height="14" rx="7" fill="currentColor" opacity="0.18" />
+        <path d="M28 50 L36 46 L44 50 L52 46" stroke="currentColor" strokeWidth="2" fill="none" opacity="0.8" />
       </svg>
     ),
   },
@@ -32,18 +33,23 @@ const positions = [
     desc: 'Striker at the front line',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        {/* Boot + ball */}
-        <ellipse cx="40" cy="50" rx="20" ry="8" fill="currentColor" opacity="0.3"/>
-        <circle cx="55" cy="45" r="14" fill="currentColor" opacity="0.85"/>
-        <path d="M55 31 L60 42 L55 45 L50 42 Z" fill="rgba(0,0,0,0.3)"/>
-        <path d="M41 43 L50 42 L55 45 L47 52 Z" fill="rgba(0,0,0,0.3)"/>
-        {/* Shoe */}
-        <path d="M15 55 Q20 45 30 48 L35 60 Q25 65 15 60 Z" fill="currentColor" opacity="0.9"/>
-        <rect x="28" y="43" width="8" height="18" rx="3" fill="currentColor" opacity="0.9"/>
-        {/* Speed lines */}
-        <line x1="5" y1="35" x2="22" y2="38" stroke="currentColor" strokeWidth="2" opacity="0.4"/>
-        <line x1="5" y1="42" x2="20" y2="44" stroke="currentColor" strokeWidth="1.5" opacity="0.3"/>
-        <line x1="5" y1="48" x2="18" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.2"/>
+        <defs>
+          <radialGradient id="forwardGrad" cx="40" cy="40" r="35">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.12" />
+          </radialGradient>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="url(#forwardGrad)" />
+        <path d="M24 35 C24 20, 56 20, 56 35 C56 50, 24 50, 24 35 Z" fill="currentColor" opacity="0.9" />
+        <circle cx="40" cy="30" r="12" fill="#fff" />
+        <path d="M29 29 Q40 20 51 29" stroke="#111" strokeWidth="3" fill="none" />
+        <circle cx="34" cy="30" r="2" fill="#111" />
+        <circle cx="46" cy="30" r="2" fill="#111" />
+        <path d="M34 36 Q40 42 46 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M23 45 Q40 32 57 45" stroke="#fff" strokeWidth="3" fill="none" opacity="0.8" />
+        <circle cx="58" cy="52" r="10" fill="#fff" opacity="0.95" />
+        <path d="M55 50 L58 54 L62 49" stroke="currentColor" strokeWidth="2" fill="none" />
+        <circle cx="58" cy="52" r="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     ),
   },
@@ -54,17 +60,22 @@ const positions = [
     desc: 'Dynamic wide player',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        {/* Arrow showing movement */}
-        <path d="M10 40 Q20 15 50 20" stroke="currentColor" strokeWidth="3" fill="none" opacity="0.5" strokeDasharray="4,3"/>
-        <path d="M50 20 L42 28 M50 20 L58 28" stroke="currentColor" strokeWidth="3" fill="none" opacity="0.5"/>
-        {/* Player body */}
-        <circle cx="62" cy="32" r="10" fill="currentColor" opacity="0.85"/>
-        <path d="M52 42 Q62 50 72 42 L72 62 L52 62 Z" fill="currentColor" opacity="0.7"/>
-        {/* Ball */}
-        <circle cx="20" cy="58" r="10" fill="currentColor" opacity="0.6"/>
-        <path d="M20 48 L24 56 L20 58 L16 56 Z" fill="rgba(0,0,0,0.25)"/>
-        {/* Pitch line */}
-        <line x1="5" y1="72" x2="75" y2="72" stroke="currentColor" strokeWidth="1.5" opacity="0.3"/>
+        <defs>
+          <radialGradient id="wingGrad" cx="40" cy="40" r="35">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.12" />
+          </radialGradient>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="url(#wingGrad)" />
+        <path d="M25 35 C25 20, 55 20, 55 35 C55 50, 25 50, 25 35 Z" fill="currentColor" opacity="0.85" />
+        <circle cx="40" cy="30" r="12" fill="#fff" />
+        <path d="M28 30 Q40 18 52 30" stroke="#111" strokeWidth="3" fill="none" />
+        <circle cx="34" cy="30" r="2" fill="#111" />
+        <circle cx="46" cy="30" r="2" fill="#111" />
+        <path d="M34 36 Q40 42 46 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M20 52 Q40 35 60 52" stroke="#fff" strokeWidth="3" fill="none" opacity="0.8" />
+        <path d="M14 45 L24 40 L24 50 Z" fill="currentColor" opacity="0.9" />
+        <path d="M60 45 L70 40 L70 50 Z" fill="currentColor" opacity="0.9" />
       </svg>
     ),
   },
@@ -75,14 +86,21 @@ const positions = [
     desc: 'Rock-solid defender',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        {/* Shield */}
-        <path d="M40 10 L65 22 L65 45 Q65 62 40 70 Q15 62 15 45 L15 22 Z"
-          fill="currentColor" opacity="0.85"/>
-        <path d="M40 20 L56 28 L56 44 Q56 56 40 62 Q24 56 24 44 L24 28 Z"
-          fill="rgba(0,0,0,0.2)"/>
-        {/* Tick / checkmark */}
-        <path d="M30 40 L37 48 L52 32" stroke="white" strokeWidth="4" fill="none"
-          strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
+        <defs>
+          <radialGradient id="centerGrad" cx="40" cy="40" r="35">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.12" />
+          </radialGradient>
+        </defs>
+        <circle cx="40" cy="40" r="34" fill="url(#centerGrad)" />
+        <path d="M30 30 C28 25, 52 25, 50 30 C48 35, 32 35, 30 30 Z" fill="currentColor" opacity="0.9" />
+        <circle cx="40" cy="30" r="12" fill="#fff" />
+        <path d="M32 30 Q40 22 48 30" stroke="#111" strokeWidth="3" fill="none" />
+        <circle cx="34" cy="31" r="2" fill="#111" />
+        <circle cx="46" cy="31" r="2" fill="#111" />
+        <path d="M34 37 Q40 43 46 37" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        <path d="M22 38 L30 28 L38 38 L46 28 L54 38" stroke="#fff" strokeWidth="3" fill="none" opacity="0.9" />
+        <path d="M15 48 Q40 15 65 48 Q40 60 15 48 Z" fill="currentColor" opacity="0.15" />
       </svg>
     ),
   },

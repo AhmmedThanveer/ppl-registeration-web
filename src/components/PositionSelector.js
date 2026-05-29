@@ -8,24 +8,20 @@ const positions = [
     desc: 'The last line of defense',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        <defs>
-          <radialGradient id="gkGrad" cx="40" cy="40" r="35">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#ffd43b" stopOpacity="0.16" />
-          </radialGradient>
-        </defs>
-        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#gkGrad)" />
-        <path d="M18 25 C18 18, 40 14, 62 25 C60 34, 54 38, 40 38 C26 38, 20 34, 18 25 Z" fill="#fff" opacity="0.95" />
-        <path d="M20 25 Q26 18 32 24 Q40 16 48 24 Q54 18 60 25" stroke="#111" strokeWidth="2" fill="none" />
-        <circle cx="28" cy="30" r="3" fill="#111" />
-        <circle cx="52" cy="30" r="3" fill="#111" />
-        <path d="M30 37 Q40 44 50 37" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M18 34 C18 42, 26 52, 40 52 C54 52, 62 42, 62 34" fill="#ffde6e" opacity="0.98" />
-        <path d="M24 38 L56 38 L48 58 L32 58 Z" fill="#fff" opacity="0.6" />
-        <path d="M25 39 L35 25 L45 39" stroke="#111" strokeWidth="2" fill="none" opacity="0.7" />
-        <circle cx="20" cy="56" r="6" fill="#fff" opacity="0.9" />
-        <path d="M16 54 L24 58 M24 54 L16 58" stroke="#111" strokeWidth="1.4" />
-        <path d="M40 62 C45 58, 55 58, 60 62" stroke="#ffca2c" strokeWidth="3" fill="none" opacity="0.8" />
+        {/* Keeper gloves */}
+        <rect x="10" y="25" width="25" height="35" rx="8" fill="currentColor" opacity="0.9"/>
+        <rect x="45" y="25" width="25" height="35" rx="8" fill="currentColor" opacity="0.9"/>
+        <circle cx="40" cy="20" r="12" fill="currentColor" opacity="0.7"/>
+        {/* Goal net lines */}
+        <line x1="5" y1="5" x2="5" y2="60" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
+        <line x1="75" y1="5" x2="75" y2="60" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
+        <line x1="5" y1="5" x2="75" y2="5" stroke="currentColor" strokeWidth="2" opacity="0.3"/>
+        {[15,25,35,45,55,65].map(x => (
+          <line key={x} x1={x} y1="5" x2={x} y2="60" stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
+        ))}
+        {[15,25,35,45,55].map(y => (
+          <line key={y} x1="5" y1={y} x2="75" y2={y} stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
+        ))}
       </svg>
     ),
   },
@@ -36,23 +32,18 @@ const positions = [
     desc: 'Striker at the front line',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        <defs>
-          <linearGradient id="forwardCard" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#ef4444" stopOpacity="0.16" />
-          </linearGradient>
-        </defs>
-        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#forwardCard)" />
-        <path d="M22 28 C22 18, 58 18, 58 28 C58 38, 22 38, 22 28 Z" fill="#fff" />
-        <path d="M24 28 Q28 18 36 24 Q44 18 52 28" stroke="#111" strokeWidth="2" fill="none" />
-        <circle cx="30" cy="31" r="2.5" fill="#111" />
-        <circle cx="50" cy="31" r="2.5" fill="#111" />
-        <path d="M30 36 Q40 44 50 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M18 36 C18 46, 62 46, 62 36 C62 52, 18 52, 18 36 Z" fill="#f87171" />
-        <path d="M22 38 L58 38 L52 58 L28 58 Z" fill="#fff" opacity="0.78" />
-        <path d="M26 40 L38 30 L50 40" stroke="#111" strokeWidth="2" fill="none" opacity="0.8" />
-        <circle cx="60" cy="54" r="8" fill="#fff" />
-        <path d="M56 52 L61 57 M61 52 L56 57" stroke="#111" strokeWidth="1.4" />
+        {/* Boot + ball */}
+        <ellipse cx="40" cy="50" rx="20" ry="8" fill="currentColor" opacity="0.3"/>
+        <circle cx="55" cy="45" r="14" fill="currentColor" opacity="0.85"/>
+        <path d="M55 31 L60 42 L55 45 L50 42 Z" fill="rgba(0,0,0,0.3)"/>
+        <path d="M41 43 L50 42 L55 45 L47 52 Z" fill="rgba(0,0,0,0.3)"/>
+        {/* Shoe */}
+        <path d="M15 55 Q20 45 30 48 L35 60 Q25 65 15 60 Z" fill="currentColor" opacity="0.9"/>
+        <rect x="28" y="43" width="8" height="18" rx="3" fill="currentColor" opacity="0.9"/>
+        {/* Speed lines */}
+        <line x1="5" y1="35" x2="22" y2="38" stroke="currentColor" strokeWidth="2" opacity="0.4"/>
+        <line x1="5" y1="42" x2="20" y2="44" stroke="currentColor" strokeWidth="1.5" opacity="0.3"/>
+        <line x1="5" y1="48" x2="18" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.2"/>
       </svg>
     ),
   },
@@ -63,23 +54,17 @@ const positions = [
     desc: 'Dynamic wide player',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        <defs>
-          <linearGradient id="wingCard" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#34d399" stopOpacity="0.16" />
-          </linearGradient>
-        </defs>
-        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#wingCard)" />
-        <path d="M20 26 C20 18, 60 18, 60 26 C60 34, 20 34, 20 26 Z" fill="#fff" />
-        <path d="M22 26 Q28 18 36 24 Q44 18 52 26" stroke="#111" strokeWidth="2" fill="none" />
-        <circle cx="28" cy="30" r="2.5" fill="#111" />
-        <circle cx="52" cy="30" r="2.5" fill="#111" />
-        <path d="M28 36 Q40 44 52 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M18 40 C18 50, 62 50, 62 40 C62 54, 18 54, 18 40 Z" fill="#6ee7b7" opacity="0.95" />
-        <path d="M24 42 L56 42 L48 60 L32 60 Z" fill="#fff" opacity="0.7" />
-        <path d="M26 44 L36 34 L46 44" stroke="#111" strokeWidth="2" fill="none" opacity="0.8" />
-        <path d="M12 54 L22 48 L22 58 Z" fill="#34d399" opacity="0.85" />
-        <path d="M68 54 L58 48 L58 58 Z" fill="#34d399" opacity="0.85" />
+        {/* Arrow showing movement */}
+        <path d="M10 40 Q20 15 50 20" stroke="currentColor" strokeWidth="3" fill="none" opacity="0.5" strokeDasharray="4,3"/>
+        <path d="M50 20 L42 28 M50 20 L58 28" stroke="currentColor" strokeWidth="3" fill="none" opacity="0.5"/>
+        {/* Player body */}
+        <circle cx="62" cy="32" r="10" fill="currentColor" opacity="0.85"/>
+        <path d="M52 42 Q62 50 72 42 L72 62 L52 62 Z" fill="currentColor" opacity="0.7"/>
+        {/* Ball */}
+        <circle cx="20" cy="58" r="10" fill="currentColor" opacity="0.6"/>
+        <path d="M20 48 L24 56 L20 58 L16 56 Z" fill="rgba(0,0,0,0.25)"/>
+        {/* Pitch line */}
+        <line x1="5" y1="72" x2="75" y2="72" stroke="currentColor" strokeWidth="1.5" opacity="0.3"/>
       </svg>
     ),
   },
@@ -90,23 +75,14 @@ const positions = [
     desc: 'Rock-solid defender',
     icon: (
       <svg viewBox="0 0 80 80" width="60" height="60">
-        <defs>
-          <linearGradient id="centerCard" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#60a5fa" stopOpacity="0.16" />
-          </linearGradient>
-        </defs>
-        <rect x="8" y="8" width="64" height="64" rx="16" fill="url(#centerCard)" />
-        <path d="M22 28 C22 20, 58 20, 58 28 C58 36, 22 36, 22 28 Z" fill="#fff" />
-        <path d="M24 28 Q30 20 38 26 Q46 20 54 28" stroke="#111" strokeWidth="2" fill="none" />
-        <circle cx="30" cy="31" r="2.5" fill="#111" />
-        <circle cx="50" cy="31" r="2.5" fill="#111" />
-        <path d="M30 36 Q40 43 50 36" stroke="#111" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        <path d="M18 39 C18 46, 62 46, 62 39 C62 53, 18 53, 18 39 Z" fill="#93c5fd" opacity="0.95" />
-        <path d="M22 42 L58 42 L52 60 L28 60 Z" fill="#fff" opacity="0.76" />
-        <path d="M26 44 L38 34 L50 44" stroke="#111" strokeWidth="2" fill="none" opacity="0.8" />
-        <path d="M16 54 L24 48 L24 58 Z" fill="#60a5fa" opacity="0.85" />
-        <path d="M64 54 L56 48 L56 58 Z" fill="#60a5fa" opacity="0.85" />
+        {/* Shield */}
+        <path d="M40 10 L65 22 L65 45 Q65 62 40 70 Q15 62 15 45 L15 22 Z"
+          fill="currentColor" opacity="0.85"/>
+        <path d="M40 20 L56 28 L56 44 Q56 56 40 62 Q24 56 24 44 L24 28 Z"
+          fill="rgba(0,0,0,0.2)"/>
+        {/* Tick / checkmark */}
+        <path d="M30 40 L37 48 L52 32" stroke="white" strokeWidth="4" fill="none"
+          strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
       </svg>
     ),
   },

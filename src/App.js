@@ -65,7 +65,7 @@ const t = {
   }
 };
 
-const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxax4JRQ8w03QkXDSrrhQVf8YVA73KZdoYXCd_L4tMMZZF5UMSaKEltjcYMqkKWt5Ut/exec';
+const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyzp11UQQrDfSIe7kDZgXQVWFAhGs5LnXQXggJvAMZXD1Z4VLqCz6J60JLqmIs7HXiIw/exec';
 
 const fileToBase64 = (file) => new Promise((resolve) => {
   const reader = new FileReader();

@@ -88,6 +88,7 @@ function App() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [serverError, setServerError] = useState('');
 
   const fileInputs = {
     photo: useRef(), aadhar: useRef(), payment: useRef(),
@@ -145,15 +146,34 @@ function App() {
 
     try {
       if (GOOGLE_SHEET_WEB_APP_URL && !GOOGLE_SHEET_WEB_APP_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL')) {
-        await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+        const res = await fetch(GOOGLE_SHEET_WEB_APP_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
+
+        const text = await res.text();
+        let data = null;
+        try { data = JSON.parse(text); } catch (e) { /* not JSON */ }
+
+        if (!res.ok) {
+          console.error('Submit failed', res.status, text);
+          setServerError(text || `HTTP ${res.status}`);
+          window.alert('Submission failed: ' + (data?.error || text || res.status));
+        } else if (data && data.success === false) {
+          console.error('Submit failed', data);
+          setServerError(JSON.stringify(data));
+          window.alert('Submission failed: ' + (data.error || JSON.stringify(data)));
+        } else {
+          setSuccess(true);
+        }
+      } else {
+        setSuccess(true);
       }
-      setSuccess(true);
     } catch (error) {
       console.error('Submit failed', error);
+      setServerError(String(error));
+      window.alert('Submission failed: ' + String(error));
     } finally {
       setSubmitting(false);
     }

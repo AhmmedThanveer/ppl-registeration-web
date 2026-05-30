@@ -1,71 +1,17 @@
 import React, { useState } from 'react';
 
-const UPI_ID = 'puthalippuramppl@upi';
-
-// Generate a simple QR-like SVG pattern (placeholder)
-const QRPattern = () => {
-  const size = 200;
-  const cell = 5;
-  const cols = size / cell;
-  // Fixed seed pattern for a "QR-like" look
-  const seed = [
-    [1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,1,0,0,1,1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1],
-    [1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,1,1,1],
-    [1,0,1,1,1,0,1,0,0,1,1,1,1,0,1,1,1,0,1,1,0,1,1,0,1,0,1,1,1,0,1,1,0,1,1,0,1,1,1,1],
-    [1,0,1,1,1,0,1,0,1,0,0,1,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,1,1,1],
-    [1,0,0,0,0,0,1,0,1,1,0,0,1,0,0,0,0,0,1,0,0,1,1,0,1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,1],
-    [1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1],
-    [0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0],
-    [1,0,1,1,0,1,1,0,0,1,1,0,1,0,1,1,0,1,1,0,0,1,1,0,1,0,1,1,0,1,1,0,0,1,1,0,1,1,0,1],
-    [1,1,0,0,1,0,0,1,0,0,1,1,1,1,0,0,1,0,0,1,0,0,1,1,1,1,0,0,1,0,0,1,0,0,1,1,1,1,0,1],
-  ];
-
-  return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ display: 'block' }}>
-      <rect width={size} height={size} fill="white"/>
-      {/* Corner squares (finder patterns) */}
-      {[[8,8],[148,8],[8,148]].map(([cx,cy],i) => (
-        <g key={i}>
-          <rect x={cx} y={cy} width={44} height={44} fill="#111" rx="4"/>
-          <rect x={cx+6} y={cy+6} width={32} height={32} fill="white"/>
-          <rect x={cx+12} y={cy+12} width={20} height={20} fill="#111" rx="2"/>
-        </g>
-      ))}
-      {/* Data modules pattern */}
-      {seed.map((row, ri) =>
-        row.map((cell, ci) => cell ? (
-          <rect key={`${ri}-${ci}`}
-            x={60 + ci * 4} y={60 + ri * 4}
-            width={3.5} height={3.5}
-            fill="#111" rx="0.5"
-          />
-        ) : null)
-      )}
-      {/* PPL text in center */}
-      <text x={size/2} y={size/2 + 4} textAnchor="middle"
-        fontFamily="Arial Black" fontSize="14" fontWeight="900" fill="#F5A623">
-        PPL
-      </text>
-    </svg>
-  );
-};
+const UPI_ID = 'sirajudheenms8@oksbi';
+const ACCOUNT_NAME = 'Suraju melethil';
+const PAYMENT_QR_SRC = `${process.env.PUBLIC_URL}/assets/paymentqr.jpeg`;
 
 const PaymentQR = ({ lang }) => {
   const [downloaded, setDownloaded] = useState(false);
 
   const handleDownload = () => {
-    const svg = document.getElementById('ppl-qr-svg');
-    if (!svg) return;
-    const serializer = new XMLSerializer();
-    const svgStr = serializer.serializeToString(svg);
-    const blob = new Blob([svgStr], { type: 'image/svg+xml' });
-    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = 'PPL-Payment-QR.svg';
+    a.href = PAYMENT_QR_SRC;
+    a.download = 'paymentqr.jpeg';
     a.click();
-    URL.revokeObjectURL(url);
     setDownloaded(true);
     setTimeout(() => setDownloaded(false), 3000);
   };
@@ -106,9 +52,11 @@ const PaymentQR = ({ lang }) => {
         animation: 'float 3s ease-in-out infinite',
         marginBottom: 16,
       }}>
-        <div id="ppl-qr-svg">
-          <QRPattern />
-        </div>
+        <img
+          src={PAYMENT_QR_SRC}
+          alt={lang === 'ml' ? ' പേമെന്റ് ക്യൂആർ' : 'Payment QR'}
+          style={{ width: 200, height: 200, objectFit: 'contain', borderRadius: 12 }}
+        />
       </div>
 
       {/* UPI ID */}
@@ -132,6 +80,14 @@ const PaymentQR = ({ lang }) => {
             fontSize: '1rem',
             letterSpacing: 1,
           }}>{UPI_ID}</div>
+          <div style={{
+            fontFamily: 'Noto Sans Malayalam, Rajdhani, sans-serif',
+            fontSize: '0.75rem',
+            color: '#ddd',
+            marginTop: 4,
+          }}>
+            {lang === 'ml' ? 'ബാൻക്ക് പേര്: ' : 'Bank Name: '}{ACCOUNT_NAME}
+          </div>
         </div>
         <button
           onClick={() => { navigator.clipboard.writeText(UPI_ID); }}

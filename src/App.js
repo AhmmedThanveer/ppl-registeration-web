@@ -17,7 +17,7 @@ const t = {
     email: 'Email Address',
     emailPh: 'your@email.com',
     phone: 'Phone Number (India)',
-    phonePh: '+91 9876543210',
+    phonePh: '+91 89436 98542',
     position: 'Playing Position',
     blood: 'Blood Group',
     photo: 'Player Photo',
@@ -37,14 +37,14 @@ const t = {
     tapUpload: 'Tap to upload',
   },
   ml: {
-    title: 'കളിക്കാരൻ രജിസ്ട്രേഷൻ',
+    title: 'കളിക്കാരുടെ രെജിസ്ട്രേഷൻ',
     subtitle: 'സീസൺ 2 — ഇപ്പോൾ രജിസ്റ്റർ ചെയ്യൂ',
     name: 'മുഴുവൻ പേര്',
     namePh: 'നിങ്ങളുടെ മുഴുവൻ പേർ നൽകുക',
     email: 'ഇമെയിൽ വിലാസം',
     emailPh: 'your@email.com',
     phone: 'ഫോൺ നമ്പർ (ഇന്ത്യ)',
-    phonePh: '+91 9876543210',
+    phonePh: '+91 89436 98542',
     position: 'കളിക്കുന്ന പൊസിഷൻ',
     blood: 'രക്തഗ്രൂപ്പ്',
     photo: 'കളിക്കാരന്റെ ഫോട്ടോ',
@@ -65,7 +65,7 @@ const t = {
   }
 };
 
-const GOOGLE_SHEET_WEB_APP_URL = 'https://docs.google.com/spreadsheets/d/1TKshf1iaC5Vax8l54fIm9vs7CbIGLAa1ni2TTayw7YQ/edit?gid=361096962#gid=361096962';
+const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxax4JRQ8w03QkXDSrrhQVf8YVA73KZdoYXCd_L4tMMZZF5UMSaKEltjcYMqkKWt5Ut/exec';
 
 const fileToBase64 = (file) => new Promise((resolve) => {
   const reader = new FileReader();
@@ -208,7 +208,7 @@ function App() {
                 color: '#888',
                 letterSpacing: 1,
               }}>
-                {isML ? 'സീസൺ 2 • 2024' : 'SEASON 2 • 2024'}
+                {isML ? 'സീസൺ 2 • 2026' : 'SEASON 2 • 2026'}
               </div>
             </div>
           </div>

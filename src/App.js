@@ -65,13 +65,41 @@ const t = {
   }
 };
 
-const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyzp11UQQrDfSIe7kDZgXQVWFAhGs5LnXQXggJvAMZXD1Z4VLqCz6J60JLqmIs7HXiIw/exec';
+const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwb5A0em2iWezxWadGEYaJrtv_CpaM0U_un381iuL9fDYzJwqLuLpDforEA7t70wKAVrQ/exec';
+const IMGBB_API_KEY = '3c593d1b6c212651f66964f641977bc6'; // get free key at api.imgbb.com
 
-const fileToBase64 = (file) => new Promise((resolve) => {
+const compressImage = (file) => new Promise((resolve) => {
   const reader = new FileReader();
-  reader.onload = (e) => resolve(e.target.result);
+  reader.onload = (e) => {
+    if (!file.type.startsWith('image/')) { resolve(e.target.result); return; }
+    const img = new Image();
+    img.onload = () => {
+      const MAX = 1024;
+      let w = img.width, h = img.height;
+      if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', 0.7));
+    };
+    img.src = e.target.result;
+  };
   reader.readAsDataURL(file);
 });
+
+const uploadToImgBB = async (base64Data, fileName) => {
+  const base64 = base64Data.split(',')[1];
+  const form = new FormData();
+  form.append('image', base64);
+  form.append('name', fileName);
+  const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+    method: 'POST',
+    body: form,
+  });
+  const data = await res.json();
+  if (!data.success) throw new Error('Image upload failed');
+  return data.data.display_url;
+};
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -88,7 +116,6 @@ function App() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [serverError, setServerError] = useState('');
 
   const fileInputs = {
     photo: useRef(), aadhar: useRef(), payment: useRef(),
@@ -104,7 +131,7 @@ function App() {
   const handleFileChange = (field) => async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    const preview = await fileToBase64(file);
+    const preview = await compressImage(file);
     setFiles(f => ({ ...f, [field]: file }));
     setPreviews(p => ({ ...p, [field]: preview }));
     if (errors[field]) setErrors(er => ({ ...er, [field]: '' }));
@@ -132,48 +159,31 @@ function App() {
     }
     setSubmitting(true);
 
-    const payload = {
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      position: form.position,
-      bloodGroup: form.bloodGroup,
-      photoName: files.photo ? files.photo.name : '',
-      aadharName: files.aadhar ? files.aadhar.name : '',
-      paymentName: files.payment ? files.payment.name : '',
-      date: new Date().toLocaleString(),
-    };
-
     try {
-      if (GOOGLE_SHEET_WEB_APP_URL && !GOOGLE_SHEET_WEB_APP_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL')) {
-        const res = await fetch(GOOGLE_SHEET_WEB_APP_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
+      const [photoUrl, aadharUrl, paymentUrl] = await Promise.all([
+        uploadToImgBB(previews.photo, files.photo.name),
+        uploadToImgBB(previews.aadhar, files.aadhar.name),
+        uploadToImgBB(previews.payment, files.payment.name),
+      ]);
 
-        const text = await res.text();
-        let data = null;
-        try { data = JSON.parse(text); } catch (e) { /* not JSON */ }
-
-        if (!res.ok) {
-          console.error('Submit failed', res.status, text);
-          setServerError(text || `HTTP ${res.status}`);
-          window.alert('Submission failed: ' + (data?.error || text || res.status));
-        } else if (data && data.success === false) {
-          console.error('Submit failed', data);
-          setServerError(JSON.stringify(data));
-          window.alert('Submission failed: ' + (data.error || JSON.stringify(data)));
-        } else {
-          setSuccess(true);
-        }
-      } else {
-        setSuccess(true);
-      }
+      await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          position: form.position,
+          bloodGroup: form.bloodGroup,
+          photoUrl,
+          aadharUrl,
+          paymentUrl,
+          date: new Date().toLocaleString(),
+        }),
+      });
+      setSuccess(true);
     } catch (error) {
       console.error('Submit failed', error);
-      setServerError(String(error));
-      window.alert('Submission failed: ' + String(error));
     } finally {
       setSubmitting(false);
     }
